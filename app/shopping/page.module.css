@@ -1,0 +1,71 @@
+.main{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+
+
+
+.link{
+    margin-top:200px;
+    margin-left:100px;
+}
+.itemList{
+    display: flex;
+    justify-content: center;
+    font-size: larger;
+}
+.mainitemdiv{
+    display: flex;
+    justify-content: center;
+    margin-top: 10%;
+    
+}
+.newItemDiv{
+    border:1px solid rgba(61, 60, 60, 0.5);
+    box-shadow: 50px 50px 100px 5px rgb(46, 43, 43);
+    border-radius:3px;
+    width:400px;
+    
+}
+.itemheader{
+    display: flex;
+    
+    justify-content: center;
+}
+.inputitemsdiv{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+.inputdiv{
+    display: flex;
+    align-items: center; 
+    justify-content: center;
+    /* margin:10% 40% auto; */
+}
+.input{
+    height:40px;
+    width:200px;
+    border-radius: 3px;
+    border:none;
+    font-size: large;
+}
+.btnlist{
+    display:flex;
+    
+}
+.incdecbtn{
+    width:40px;
+    height:40px;
+    background-color: blueviolet;
+    border:none;
+    border-radius:3px;
+}
+.addbtn{
+    width:70px;
+    height:35px;
+    background-color: rgb(238, 128, 26);
+    border:none;
+    border-radius:3px;
+}

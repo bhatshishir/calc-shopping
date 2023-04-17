@@ -1,19 +1,19 @@
-import './page.module.css';
+import styles from './page.module.css';
 import Link from 'next/link';
 const page = () => {
   return (
-    <div className='page-div'>
-      <div className="main-div">
+    <div className={styles.page}>
+      <div className={styles.main}>
         <h1>Welcome To The Assignment!</h1>
         <p>Choose any of the buttons to explore more... </p>
       </div>
 
-      <div className="button-div">
+      <div className={styles.buttondiv}>
         <Link href='/calculator'>
-          <button type="button">Calculator</button>
+          <button className={styles.btn1} type="button">Calculator</button>
         </Link>
         <Link href='/shopping'>
-          <button type="button">Shopping</button>
+          <button className={styles.btn2} type="button">Shopping</button>
         </Link>
         
         
