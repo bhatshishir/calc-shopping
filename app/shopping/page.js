@@ -35,6 +35,10 @@ const shopping = () => {
     setItems(
       items.map((item) => {
         if (item.id === id) {
+          if(item.count===1){
+            handleDelete(id)
+            return;
+          }
           return {
             ...item,
             count: item.count - 1,
@@ -109,36 +113,38 @@ const shopping = () => {
               Add
             </button>
           </div>
-          {isEmpty && <span style={{color:'light-red'}}>Input field cannot be Empty!</span>}
+          {isEmpty && <span style={{color:'red',padding:'0.5rem'}}>Input field cannot be Empty!</span>}
         </div>
       </div>
 
      
 
       <div className={styles.itemList}>
-        <table>
+        <table className={styles.table}>
           <thead>
             <tr>
-              <th>#</th>
-              <th>ItemName</th>
-              <th>Count</th>
-              <th>Delete</th>
+              <th className={styles.table}>#</th>
+              <th className={styles.table}>ItemName</th>
+              <th className={styles.table}>Count</th>
+              <th className={styles.table}>Delete</th>
             </tr>
           </thead>
           <tbody>
+           
             {items.map((item) => (
-              <tr>
-                <td>{item.id}</td>
-                <td>{item.name}</td>
-                <td>
+              <tr key={item.id}>
+                <td className={styles.table}>{item?.id}</td>
+                <td className={styles.table}>{item?.name}</td>
+                <td className={styles.table}>
                   <div className={styles.btnlist}>
                     <button
                       className={styles.incdecbtn}
                       onClick={() => handleDec(item.id)}
+                      disabled={item.count<2}
                     >
                       -
                     </button>
-                    <span>{item.count}</span>
+                    <span>{item?.count}</span>
                     <button
                       className={styles.incdecbtn}
                       onClick={() => handleInc(item.id)}
@@ -147,7 +153,7 @@ const shopping = () => {
                     </button>
                   </div>
                 </td>
-                <td>
+                <td className={styles.table}>
                   <button className={styles.deletebtn} onClick={()=>handleDelete(item.id)}>Delete</button>
                 </td>
               </tr>

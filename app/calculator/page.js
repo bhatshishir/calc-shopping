@@ -22,9 +22,12 @@ const calculator = () => {
   }
 
   function handleOperator(e) {
+    
     setIsNumber1(true);
     setResult(0);
     setOperator(e.target.textContent);
+   
+    
     // if (isNumber2) {
     //   handleEqual();
     // }
@@ -74,7 +77,7 @@ const calculator = () => {
       
       <h1 className={styles.heading}>Simple Calculator</h1>
       <div className={styles.inputdiv}>
-        <h1 className={styles.result}>{result}</h1>
+        <h1 className={styles.result}>{result-Math.floor(result)!==0?result.toFixed(2):result}</h1>
         {/* // <input className={styles.inputbox} type="number" value={result} /> */}
       </div>
       <div className={styles.numberbox}>

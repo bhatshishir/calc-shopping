@@ -11,25 +11,35 @@
 }
 .itemList{
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     font-size: larger;
 }
+.table {
+    border:1px solid rgb(167, 164, 164);
+    border-radius:3px;
+    padding:5px;
+    width:500px;
+   text-align: center;
+}
+
 .mainitemdiv{
     display: flex;
     justify-content: center;
-    margin-top: 10%;
+    margin-top: 5%;
+    margin-bottom:3%;
     
 }
 .newItemDiv{
     border:1px solid rgba(61, 60, 60, 0.5);
     /* box-shadow: 50px 50px 100px 5px rgb(46, 43, 43); */
     border-radius:3px;
-    width:400px;
+    width:500px;
+    background-color: rgb(253, 190, 73);
     
 }
 .itemheader{
     display: flex;
-    
+    /* color:rgb(255, 123, 0); */
     justify-content: center;
 }
 .inputitemsdiv{
@@ -43,13 +53,17 @@
     align-items: center; 
     justify-content: center;
     /* margin:10% 40% auto; */
+   
+
 }
 .input{
     height:40px;
-    width:200px;
+    width:400px;
     border-radius: 3px;
     border:none;
     font-size: large;
+    margin-left: 10px;
+    /* background-color:rgba(250, 144, 23, 0.623); */
 }
 .btnlist{
     display:flex;
@@ -69,13 +83,15 @@
 .addbtn{
     width:70px;
     height:35px;
-    background-color: rgb(238, 128, 26);
+    background-color: blueviolet;
     border:none;
     border-radius:3px;
-    font-weight:bold
+    font-weight:bold;
+    margin-right:10px;
 }
 .addbtn:hover{
-    background-color: rgb(252, 123, 3);
+    background-color: rgb(131, 10, 243);
+
 
 }
 .deletebtn{
