@@ -2,74 +2,91 @@
 import styles from "./page.module.css";
 import Link from "next/link";
 import { useState } from "react";
-// const items = [
-//   { name: "Tomato", count: 1 },
-//   { name: "Tomapo", count: 2 },
-//   { name: "omato", count: 3 },
-// ];
+
 
 const shopping = () => {
-  const [items, setItems] = useState([]);
-  const [count, setcount] = useState(0);
+  const [items, setItems] = useState([{ id: 1, name: "Tomato", count: 1 }]);
+  // const [count, setcount] = useState(0);
   const [name, setName] = useState("");
+  const [isEmpty,setIsEmpty]=useState(false);
 
-  function handleInc() {
-    setcount((count) => count + 1);
+  function handleInc(id) {
+    setItems(
+      items.map((item) => {
+        if (item.id === id) {
+          return {
+            ...item,
+            count: item.count + 1,
+          };
+        } else {
+          return item;
+        }
+      })
+    );
+
+    // const updatedItem =items.filter(item=> item.id == id?item.count++:item);
+    // // updatedItem.count++;
+    // console.log(updatedItem,"inc");
+    // console.log(items,"newis");
+    // setItems([...items]);
   }
 
-  function handleDec() {
-    setcount((count) => count - 1);
+  function handleDec(id) {
+    setItems(
+      items.map((item) => {
+        if (item.id === id) {
+          return {
+            ...item,
+            count: item.count - 1,
+          };
+        } else {
+          return item;
+        }
+      })
+    );
+    // const updatedItem =items.filter(item=> item.id == id?item.count--:item);
+    // console.log(updatedItem,"dec");
+    // setItems([...items]);
   }
 
   function handleAdd(e) {
-    const newItem = { id:items.length+1,name, count };
+    if(name.length===0){
+      setIsEmpty(true);
+      return;
+    }
+    const newItem = { id: items.length + 1, name, count: 1 };
     setItems([...items, newItem]);
     setName("");
-    setcount(0);
+    
+  }
+
+  function handleDelete(id){
+    setItems(
+      items.filter((item) => {
+        if (item.id !== id) {
+          return {
+            ...item,
+          };
+        } 
+      })
+    );
   }
 
   function handleInput(e) {
     setName(e.target.value);
+    
+
+      setIsEmpty(false);
+    
+
   }
+  // console.log(items);
   return (
     <div className="main">
       <Link className={styles.link} href="./">
         HOME
       </Link>
       <h1 style={{ textAlign: "center" }}>Shopping List</h1>
-
-      {/* <div className={styles.itemList}>
-        <ul>
-          {items.map((item, index) => (
-            <div key={index}>
-              <span>{item.name}</span>
-              <span>{item.count}</span>
-            </div>
-          ))}
-        </ul>
-      </div> */}
-
-      <div className={styles.itemList}> 
-        <table className="table">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>ItemName</th>
-              <th>Count</th>
-            </tr>
-          </thead>
-          <tbody>
-           
-         {items.map(item=>{
-          <tr key={item.id}>
-            <td>{item.id}</td>
-            <td>{item.name}</td>
-            <td>{item.count}</td>
-          </tr>
-         })}
-          </tbody>
-        </table>
-      </div>
 
       <div className={styles.mainitemdiv}>
         <div className={styles.newItemDiv}>
@@ -83,24 +100,63 @@ const shopping = () => {
                 type="text"
                 onChange={handleInput}
                 value={name}
+                placeholder="Add an Item..."
               />
             </div>
 
-            <div className={styles.btnlist}>
-              <button className={styles.incdecbtn} onClick={handleInc}>
-                +
-              </button>
-              <span>{count}</span>
-              <button className={styles.incdecbtn} onClick={handleDec}>
-                -
-              </button>
-            </div>
+          
             <button className={styles.addbtn} onClick={handleAdd}>
               Add
             </button>
           </div>
+          {isEmpty && <span style={{color:'light-red'}}>Input field cannot be Empty!</span>}
         </div>
       </div>
+
+     
+
+      <div className={styles.itemList}>
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>ItemName</th>
+              <th>Count</th>
+              <th>Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            {items.map((item) => (
+              <tr>
+                <td>{item.id}</td>
+                <td>{item.name}</td>
+                <td>
+                  <div className={styles.btnlist}>
+                    <button
+                      className={styles.incdecbtn}
+                      onClick={() => handleDec(item.id)}
+                    >
+                      -
+                    </button>
+                    <span>{item.count}</span>
+                    <button
+                      className={styles.incdecbtn}
+                      onClick={() => handleInc(item.id)}
+                    >
+                      +
+                    </button>
+                  </div>
+                </td>
+                <td>
+                  <button className={styles.deletebtn} onClick={()=>handleDelete(item.id)}>Delete</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      
     </div>
   );
 };

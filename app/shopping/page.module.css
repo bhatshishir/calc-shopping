@@ -22,7 +22,7 @@
 }
 .newItemDiv{
     border:1px solid rgba(61, 60, 60, 0.5);
-    box-shadow: 50px 50px 100px 5px rgb(46, 43, 43);
+    /* box-shadow: 50px 50px 100px 5px rgb(46, 43, 43); */
     border-radius:3px;
     width:400px;
     
@@ -56,11 +56,15 @@
     
 }
 .incdecbtn{
-    width:40px;
-    height:40px;
+    width:30px;
+    height:30px;
     background-color: blueviolet;
     border:none;
     border-radius:3px;
+}
+.incdecbtn:hover{
+    background-color: rgb(131, 10, 243);
+
 }
 .addbtn{
     width:70px;
@@ -68,4 +72,21 @@
     background-color: rgb(238, 128, 26);
     border:none;
     border-radius:3px;
+    font-weight:bold
+}
+.addbtn:hover{
+    background-color: rgb(252, 123, 3);
+
+}
+.deletebtn{
+    width: 70px;
+    height: 35px;
+    background-color: rgb(184, 45, 40);
+    border:none;
+    border-radius:3px;
+    font-weight:bold
+
+}
+.deletebtn:hover{
+    background-color: rgb(236, 32, 25);
 }
