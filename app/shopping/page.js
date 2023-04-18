@@ -3,12 +3,11 @@ import styles from "./page.module.css";
 import Link from "next/link";
 import { useState } from "react";
 
-
 const shopping = () => {
   const [items, setItems] = useState([{ id: 1, name: "Tomato", count: 1 }]);
   // const [count, setcount] = useState(0);
   const [name, setName] = useState("");
-  const [isEmpty,setIsEmpty]=useState(false);
+  const [isEmpty, setIsEmpty] = useState(false);
 
   function handleInc(id) {
     setItems(
@@ -35,8 +34,8 @@ const shopping = () => {
     setItems(
       items.map((item) => {
         if (item.id === id) {
-          if(item.count===1){
-            handleDelete(id)
+          if (item.count === 1) {
+            handleDelete(id);
             return;
           }
           return {
@@ -54,35 +53,33 @@ const shopping = () => {
   }
 
   function handleAdd(e) {
-    if(name.length===0){
+    if (name.length === 0) {
       setIsEmpty(true);
       return;
     }
     const newItem = { id: items.length + 1, name, count: 1 };
     setItems([...items, newItem]);
     setName("");
-    
   }
 
-  function handleDelete(id){
-    setItems(
-      items.filter((item) => {
-        if (item.id !== id) {
-          return {
-            ...item,
-          };
-        } 
-      })
-    );
+  function handleDelete(id) {
+    let updated = items.filter((item) => {
+      if (item.id !== id) {
+        return {
+          ...item,
+        };
+      }
+    });
+
+    let newItems = updated.map((item, index) => ({ ...item, id: index + 1 }));
+
+    setItems(newItems);
   }
 
   function handleInput(e) {
     setName(e.target.value);
-    
 
-      setIsEmpty(false);
-    
-
+    setIsEmpty(false);
   }
   // console.log(items);
   return (
@@ -108,16 +105,17 @@ const shopping = () => {
               />
             </div>
 
-          
             <button className={styles.addbtn} onClick={handleAdd}>
               Add
             </button>
           </div>
-          {isEmpty && <span style={{color:'red',padding:'0.5rem'}}>Input field cannot be Empty!</span>}
+          {isEmpty && (
+            <span style={{ color: "red", padding: "0.5rem" }}>
+              Input field cannot be Empty!
+            </span>
+          )}
         </div>
       </div>
-
-     
 
       <div className={styles.itemList}>
         <table className={styles.table}>
@@ -130,7 +128,6 @@ const shopping = () => {
             </tr>
           </thead>
           <tbody>
-           
             {items.map((item) => (
               <tr key={item.id}>
                 <td className={styles.table}>{item?.id}</td>
@@ -140,7 +137,7 @@ const shopping = () => {
                     <button
                       className={styles.incdecbtn}
                       onClick={() => handleDec(item.id)}
-                      disabled={item.count<2}
+                      disabled={item.count < 2}
                     >
                       -
                     </button>
@@ -154,15 +151,18 @@ const shopping = () => {
                   </div>
                 </td>
                 <td className={styles.table}>
-                  <button className={styles.deletebtn} onClick={()=>handleDelete(item.id)}>Delete</button>
+                  <button
+                    className={styles.deletebtn}
+                    onClick={() => handleDelete(item.id)}
+                  >
+                    Delete
+                  </button>
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
-
-      
     </div>
   );
 };
